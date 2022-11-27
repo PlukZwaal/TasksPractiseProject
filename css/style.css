@@ -31,7 +31,7 @@ body{
     padding-top: 15px;
     padding-bottom: 15px;
     border: 0px transparent;
-    width: 400px;
+    width: 480px;
 }
 
 .addTask button{
@@ -45,6 +45,36 @@ body{
 }
 
 .addTask button:hover{
+    background-color: rgba(148,187,233,1);
+}
+
+.tasks{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.task{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.task button{
+    background-color: rgba(238,174,202,1);
+    border-color: transparent;
+    padding: 5px;
+    font-weight: 300;
+    width: 40px;
+    transition: background-color 0.5s;
+    color: white;
+}
+
+.task button:hover{
     background-color: rgba(148,187,233,1);
 }
 

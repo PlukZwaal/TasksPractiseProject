@@ -78,6 +78,25 @@ body{
     background-color: rgba(148,187,233,1);
 }
 
+.clearAllTasks{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.clearAllTasks button{
+    background-color: rgba(238,174,202,1);
+    border-color: transparent;
+    padding: 5px;
+    font-weight: 300;
+    transition: background-color 0.5s;
+    color: white;
+}
+
+.clearAllTasks button:hover{
+    background-color: rgba(148,187,233,1);
+}
+
+
 @media only screen and (max-width: 700px) {
     .wrapper{
         width: 400px;

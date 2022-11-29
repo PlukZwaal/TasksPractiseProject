@@ -20,30 +20,36 @@
             </div>
             <div id="tasks" class="tasks">
             </div>
+            <div class="clearAllTasks">
+                <button id="clearAllTasksButton">Clear All Tasks</button>
+            </div>
         </div>
     </main>
     <footer>
     </footer>
 </body>
 </html>
-
 <script>
     const tasks = [];
     if(JSON.parse(localStorage.getItem('tasks')) == null){
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
-    const storedTasks = JSON.parse(localStorage.getItem('tasks'))
+    storedTasksCount = 0;
+    const storedTasks = JSON.parse(localStorage.getItem('tasks'));
     storedTasks.forEach(function (item, index) {
         tasks.push(item)
         document.getElementById('tasks')
             .innerHTML += `
             <div class="task">
                 <p>${item}</p>
-                <button class="fa fa-trash-o"></button>
+                <button id="removeTaskButton-${storedTasksCount}" class="fa fa-trash-o"></button>
             </div>
             `;
+        storedTasksCount++;
     });
-
+    if(storedTasksCount < 1){
+        document.getElementById("clearAllTasksButton").style.display = "none";
+    }
     document.getElementById('addTaskButton')
         .addEventListener('click', function(e){
             var inputTaskValue = document.getElementById("inputTask").value;
@@ -55,7 +61,25 @@
                     <p>${inputTaskValue}</p>
                     <button class="fa fa-trash-o"></button>
                 </div>
-                `;
+                `;  
+            location.reload();   
+            if(document.getElementById("clearAllTasksButton").style.display == "none"){
+                document.getElementById("clearAllTasksButton").style.display = "block";
+            }
         });
-
+    document.getElementById('clearAllTasksButton')
+    .addEventListener('click', function(e){
+        localStorage.clear();
+        location.reload();
+    });
+    for(let i = 0; i < storedTasksCount; i++){
+            document.getElementById('removeTaskButton-' + i)
+                .addEventListener('click', function(e){
+                    console.log(i);
+                    tasks.splice(i, 1);
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    location.reload();
+                })
+        }
+    console.log(tasks)
 </script>

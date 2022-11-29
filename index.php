@@ -18,6 +18,9 @@
                 <input id="inputTask" type="text" placeholder="type here the task">
                 <button id="addTaskButton">ADD</button>
             </div>
+            <div class="taskErrors">
+                <p id="inputTaskError"></p>
+            </div>
             <div id="tasks" class="tasks">
             </div>
             <div class="clearAllTasks">
@@ -53,18 +56,22 @@
     document.getElementById('addTaskButton')
         .addEventListener('click', function(e){
             var inputTaskValue = document.getElementById("inputTask").value;
-            tasks.push(inputTaskValue)
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            document.getElementById('tasks')
-                .innerHTML += `
-                <div class="task">
-                    <p>${inputTaskValue}</p>
-                    <button class="fa fa-trash-o"></button>
-                </div>
-                `;  
-            location.reload();   
-            if(document.getElementById("clearAllTasksButton").style.display == "none"){
-                document.getElementById("clearAllTasksButton").style.display = "block";
+            if(inputTaskValue.length < 1){
+                document.getElementById("inputTaskError").innerHTML = "The task can not be empty!";
+            } else {
+                tasks.push(inputTaskValue)
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                document.getElementById('tasks')
+                    .innerHTML += `
+                    <div class="task">
+                        <p>${inputTaskValue}</p>
+                        <button class="fa fa-trash-o"></button>
+                    </div>
+                    `;  
+                location.reload();   
+                if(document.getElementById("clearAllTasksButton").style.display == "none"){
+                    document.getElementById("clearAllTasksButton").style.display = "block";
+                }
             }
         });
     document.getElementById('clearAllTasksButton')
